@@ -70,18 +70,16 @@ def search_jobs() -> str:
     try:
         print("Using LinkedIn API to search for jobs...")
 
-        jobs = linkedin_api.search_jobs(keywords="SDE-1",
-                                        companies=[],
-                                        location_name="India",
-                                        listed_at=86400,
-                                        limit=1)  #need to be replaced by limit
+        jobs = linkedin_api.search_jobs(
+            keywords="Software Engineer at Amazon",
+            location_name="India",
+            limit=10,
+            easy_apply=True)  #need to be replaced by limit
 
         job_results = []
         for job in jobs:
             job_id = job["entityUrn"].split(":")[-1]
             print(f"Processing job ID: {job_id}")
-            print(f"Job details: {job}")
-            print("-" * 80)
 
             try:
                 # Get detailed job information
@@ -106,10 +104,16 @@ def search_jobs() -> str:
 
                 company_apply_url = None
 
+                print(job_data)
+                print("-" * 80)
+
                 if not easy_apply:
+                    print("skip")
+
                     company_apply_url = job_data.get("applyMethod", {}).get(
                         "com.linkedin.voyager.jobs.OffsiteApply",
                         {}).get("companyApplyUrl")
+                    continue
 
                 job_result = {
                     "job_id": job_id,
@@ -660,76 +664,5 @@ def safe_create_resume(text: str, output_path: str) -> bool:
 # create_latex_resume(resume_text, "resume.pdf")
 
 if __name__ == "__main__":
-    text = """
-# Rishiraj Kalita
-Email: rishirajkalita19@gmail.com  
-Linkedin: //Rishirak Kalita  
-Mobile: 7386260082
-
-## Education
-• **National Institute of Technology, Silchar**  
-India  
-Bachelor of Technology - Computer Science and Engineering; GPA: 8.8  
-2019 - 2023
-
-## Skills
-• **Programming:**  
-Advanced - Python, Spark, SQL, PL/SQL
-• **Software Development:**  
-Architecture Design, Debugging, Application Development, Code Optimization
-• **Relation Databases:**  
-RDS, Redshift, Postgres
-• **Cloud Solutions:**  
-AWS Services, Data Architecture, Solution Design
-• **Data Tools:**  
-Amazon Glue, EMR, Airflow, S3
-• **Development Frameworks:**  
-PySpark, HDFS, Hive
-
-## Experience
-• **ORGANIZATION: Amazon Web Services**  
-**ROLE: Consultant Data Analytics**  
-August 2023 - Present
-◦ Architecting Software Solutions: Designed scalable and performant software platforms tailored to customer's technical requirements, ensuring high availability and robust architecture.  
-◦ Technical Consulting: Providing expert guidance on software development and architecture, including troubleshooting complex issues and recommending optimal implementation approaches.  
-◦ Debugging and Optimization: Identifying and resolving software challenges related to platform and application performance, implementing solutions that enhance system efficiency and stability.
-
-• **Organization: Mastercard**  
-**Role: Software Developer Intern**  
-May 2022 - July 2022  
-◦ Developed software applications at scale, focusing on architecture design and performance optimization.  
-◦ Debugged complex issues in production systems and implemented improvements to enhance reliability.  
-◦ Landed PPO for my work during the internship based on technical problem-solving abilities.
-
-• **ORGANISATION: GEEKSFORGEEKS AND SCALER**  
-**Role: Content Writer**  
-Freelancing  
-◦ Created technically accurate programming tutorials and problem-solving guides focusing on software development concepts and algorithms.  
-◦ Developed educational content on Graphs, Trie, Dynamic Programming, SegmentTrees, and other advanced programming topics.  
-◦ List of published articles: //Rishiraj-Kalita-Articles-Link
-
-## Projects
-◦ **CLOUDERA TO EMR MIGRATION**  
-∗**Task:** Executed a comprehensive software architecture migration from Cloudera to Amazon EMR, designing and developing data processing applications using Spark jobs, performing extensive debugging and validation to ensure code integrity, successfully migrating approximately 5000 jobs to the Amazon EMR platform.  
-∗**Technologies:** Hive, PySpark, EMR, S3, IAM
-
-◦ **MIGRATING FROM INFORMATICA TO PYSPARK - Amazon GLUE**  
-∗**Task:** Architected and implemented robust software solutions to replace Informatica workflows, developing custom PySpark applications for processing and transforming data. Enhanced overall system architecture while troubleshooting complex integration issues between Amazon S3 and Redshift.  
-∗**Technologies:** Amazon S3, Glue, MWAA(Airflow), Redshift.
-
-◦ **MIGRATING FROM SISENSE To Business Intelligent Service - Amazon QUICKSIGHT**  
-∗**Task:** Designed and developed software components to improve efficiency and consistency of dashboards, transitioning from Sisense to Amazon Quicksight. Architected data models based on different business logic, creating ETL applications that provided reliable data processing.  
-∗**Technologies:** Amazon Quicksight, Amazon S3, Glue, Pyspark.
-
-## Certifications
-• AWS Certified Data Engineer  
-• AWS Certified Machine Learning Specialist  
-• AWS Certified Solutions Architect  
-• AWS Certified AI Practitioner  
-• Solved more than 1500 algorithmic questions on various competitive coding platforms
-"""
-    result = safe_create_resume(
-        text,
-        '/Users/rishirajkalita/Desktop/job_orbit_v2/data/customized_resumes/rishi_resume.pdf'
-    )
+    result = search_jobs()
     print(result)

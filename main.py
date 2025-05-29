@@ -17,6 +17,31 @@ from langchain_community.document_loaders import CSVLoader
 from langchain_core.documents import Document
 from resume_customizer import ResumeCustomizer
 
+import os
+
+from agno.agent import Agent
+from openinference.instrumentation.agno import AgnoInstrumentor
+from opentelemetry import trace as trace_api
+from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import SimpleSpanProcessor
+
+# Set the endpoint and headers for LangSmith
+endpoint = "https://api.smith.langchain.com"
+headers = {
+    "x-api-key": os.getenv("LANGSMITH_API_KEY"),
+    "Langsmith-Project": os.getenv("LANGSMITH_PROJECT"),
+}
+
+# Configure the tracer provider
+tracer_provider = TracerProvider()
+tracer_provider.add_span_processor(
+    SimpleSpanProcessor(OTLPSpanExporter(endpoint=endpoint, headers=headers)))
+trace_api.set_tracer_provider(tracer_provider=tracer_provider)
+
+# Start instrumenting agno
+AgnoInstrumentor().instrument()
+
 # Load environment variables
 load_dotenv()
 
@@ -510,12 +535,11 @@ def create_agent(provider: str = 'ollama'):
         get_job_by_id
     ]
 
-    return Agent(
-        tools=tools,
-        show_tool_calls=True,
-        model=get_model(provider),
-        markdown=True,
-    )
+    return Agent(tools=tools,
+                 show_tool_calls=True,
+                 model=get_model(provider),
+                 markdown=True,
+                 debug_mode=True)
 
 
 def run_agent(query: str, provider: str = 'ollama'):

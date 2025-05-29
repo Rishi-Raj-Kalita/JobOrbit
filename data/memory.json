@@ -1,0 +1,64 @@
+{
+  "job_searches": [
+    {
+      "timestamp": "2025-05-29T14:12:56.374533",
+      "keywords": "SDE-1 \"Software Development Engineer\"",
+      "companies": [],
+      "location": "India",
+      "jobs_count": 1
+    },
+    {
+      "timestamp": "2025-05-29T14:18:47.838673",
+      "keywords": "SDE-1 software development engineer",
+      "companies": [],
+      "location": "India",
+      "jobs_count": 1
+    }
+  ],
+  "jobs_found": [
+    {
+      "job_id": "4224595712",
+      "title": "Software Development Engineer",
+      "company": "Amazon",
+      "location": "Gurugram, Haryana, India",
+      "description": "Description\n\nDo you want to define the future of Internet commerce?\n\nAre you a top-notch software engineer with a creative flare, strong problem-solving skills, the drive to build and ship products fast, a solid computer science background and the desire to build Amazon's next generation Internet-facing technology? Come talk with us about joining our team to help our team serve customers better.\n\nIs your next project defining a world class Internet service?\n\nWith us, you will be building cutting-edge applications and services in an environment of highly distributed systems used by Amazon transportation . Your innovation will provide new functionality for Amazon Transportation enabling millions of packages to move smoothly across amazon transportation network across the globe.\n\nCan you work at the scale of the biggest Internet companies?\n\nThe solutions that you will deploy must scale to serve missions of customers worldwide, process thousands of transactions per minute and have an uptime greater than 99.99%.\n\nDo you believe systems can always be made faster?\n\nIf so, come be a member of Amazon\u2019s Core Transportation Technology team. We build software systems that ensure millions of packages reach our customers in the fastest possible time. The systems you build will be at the forefront of our goal to ensure we are able to deliver packages same day or even within hours.\n\nAre you pedantic about code quality ?\n\nIf so, we are looking for an individual like you to join a team of world class developers and help us write highest quality code which is readable, maintainable and can give our customers a bug free experience.\n\nAmazon is a premier place to build and deploy world class software\n\nAmazon has come a long way since opening on the World Wide Web in July 1995. Today, we operate retail websites in multiple countries across geographies, offering products in many categories (books, media, digital, electronics etc.) worldwide, and we still like to work hard, have fun and make history! The Amazon.com brand has become synonymous with a superior level of convenience, selection, low prices, and customer service.\n\nAmazon\u2019s global fulfillment network enables any merchant in any of the geography ship items that you order on Amazon, to any place on earth. There are a variety of ways in which we acquire items from vendors to our warehouses, ship items from one location to another, and several intermediate locations through which the package travels before reaching the customer. There are millions of such packages, each with different attributes, and different delivery requirements. What results is a highly dense graph of source, intermediate and destination nodes, with arcs between them representing possible paths for packages, with different costs and times along each arc. Accounting for all these constraints, and maximizing the number of shipments shipped, while minimizing cost, providing a variety of delivery options and maximizing delivery performance is Transportation Engineering's primary focus.\n\nAbout The Team\n\nWe are a highly agile and self driven team of talented and motivated engineers based out of Delhi. We are at the heart of Amazon transportation and are responsible for managing entire package lifecycle. Team owns the orchestration of transportation requests, state management, proactive deviation management at network level, progress tracker operations like delivery to locker, cancel and notification of transportation events to downstream clients. Come join the team that sets a high bar for software development and operational excellence practices. We use Amazon wide tools and processes to a large extent, and we also contribute to the Amazon wide arsenal of tools that all businesses use to be more effective. We are early adopters of new tools and technologies, before they become mandatory.\n\nBasic Qualifications\n\n 3+ years of non-internship professional software development experience 2+ years of non-internship design or architecture (design patterns, reliability and scaling) of new and existing systems experience 3+ years of Video Games Industry (supporting title Development, Release, or Live Ops) experience Experience programming with at least one software programming language\n\nPreferred Qualifications\n\n 3+ years of full software development life cycle, including coding standards, code reviews, source control management, build processes, testing, and operations experience Bachelor's degree in computer science or equivalent\n\nOur inclusive culture empowers Amazonians to deliver the best results for our customers. If you have a disability and need a workplace accommodation or adjustment during the application and hiring process, including support for the interview or onboarding process, please visit https://amazon.jobs/content/en/how-we-hire/accommodations for more information. If the country/region you\u2019re applying in isn\u2019t listed, please contact your Recruiting Partner.\n\n\nCompany - ADCI - Haryana\n\nJob ID: A2975005",
+      "easy_apply": false,
+      "url": "https://www.linkedin.com/jobs/view/4224595712",
+      "posted_date": "2025-05-29T14:12:55.873836",
+      "company_apply_url": "https://www.amazon.jobs/jobs/2975005/software-development-engineer?cmpid=SPLICX0248M&utm_source=linkedin.com&utm_campaign=cxro&utm_medium=social_media&utm_content=job_posting&ss=paid"
+    },
+    {
+      "job_id": "4225142137",
+      "title": "Software Developer",
+      "company": "Oracle",
+      "location": "Noida, Uttar Pradesh, India",
+      "description": "Job Description\n\nDesign, develop, troubleshoot and debug software programs for databases, applications, tools, networks etc.\n\nCareer Level - IC2\n\nResponsibilities\n\nAs a member of the software engineering division, you will apply basic to intermediate knowledge of software architecture to perform software development tasks associated with developing, debugging or designing software applications or operating systems according to provided design specifications. Build enhancements within an existing software architecture and occasionally suggest improvements to the architecture.\n\nAbout Us\n\nAs a world leader in cloud solutions, Oracle uses tomorrow\u2019s technology to tackle today\u2019s challenges. We\u2019ve partnered with industry-leaders in almost every sector\u2014and continue to thrive after 40+ years of change by operating with integrity.\n\nWe know that true innovation starts when everyone is empowered to contribute. That\u2019s why we\u2019re committed to growing an inclusive workforce that promotes opportunities for all.\n\nOracle careers open the door to global opportunities where work-life balance flourishes. We offer competitive benefits based on parity and consistency and support our people with flexible medical, life insurance, and retirement options. We also encourage employees to give back to their communities through our volunteer programs.\n\nWe\u2019re committed to including people with disabilities at all stages of the employment process. If you require accessibility assistance or accommodation for a disability at any point, let us know by emailing accommodation-request_mb@oracle.com or by calling +1 888 404 2494 in the United States.\n\nOracle is an Equal Employment Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, national origin, sexual orientation, gender identity, disability and protected veterans\u2019 status, or any other characteristic protected by law. Oracle will consider for employment qualified applicants with arrest and conviction records pursuant to applicable law.",
+      "easy_apply": false,
+      "url": "https://www.linkedin.com/jobs/view/4225142137",
+      "posted_date": "2025-05-29T14:18:47.333003",
+      "company_apply_url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/job/269797/?utm_medium=jobboard&utm_source=LinkedIn"
+    }
+  ],
+  "resume_customizations": [
+    {
+      "base_resume_path": "./data/base_resume.pdf",
+      "output_path": "./data/customized_resumes/resume_4225142137_Oracle_Software Developer.pdf",
+      "filename": "resume_4225142137_Oracle_Software Developer.pdf",
+      "job_title": "",
+      "company": "",
+      "customization_level": "moderate",
+      "job_description_preview": "Job Description\n\nDesign, develop, troubleshoot and debug software programs for databases, applications, tools, networks etc.\n\nCareer Level - IC2\n\nResponsibilities\n\nAs a member of the software engineer...",
+      "timestamp": "2025-05-29T14:19:59.631388",
+      "file_size": 40380,
+      "model_provider": "aws"
+    },
+    {
+      "job_id": "4225142137",
+      "job_title": "Software Developer",
+      "company": "Oracle",
+      "file_path": "./data/customized_resumes/resume_4225142137_Oracle_Software Developer.pdf",
+      "timestamp": "2025-05-29T14:24:03.998051",
+      "filename": "resume_4225142137_Oracle_Software Developer.pdf"
+    }
+  ]
+}
