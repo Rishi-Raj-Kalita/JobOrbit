@@ -30,20 +30,20 @@
     {
       "job_id": "4225142137",
       "title": "Software Developer",
-      "company": "Oracle",
-      "location": "Noida, Uttar Pradesh, India",
+      "company": "PhonePe",
+      "location": "Bengaluru, Karnataka, India ",
       "description": "Job Description\n\nDesign, develop, troubleshoot and debug software programs for databases, applications, tools, networks etc.\n\nCareer Level - IC2\n\nResponsibilities\n\nAs a member of the software engineering division, you will apply basic to intermediate knowledge of software architecture to perform software development tasks associated with developing, debugging or designing software applications or operating systems according to provided design specifications. Build enhancements within an existing software architecture and occasionally suggest improvements to the architecture.\n\nAbout Us\n\nAs a world leader in cloud solutions, Oracle uses tomorrow\u2019s technology to tackle today\u2019s challenges. We\u2019ve partnered with industry-leaders in almost every sector\u2014and continue to thrive after 40+ years of change by operating with integrity.\n\nWe know that true innovation starts when everyone is empowered to contribute. That\u2019s why we\u2019re committed to growing an inclusive workforce that promotes opportunities for all.\n\nOracle careers open the door to global opportunities where work-life balance flourishes. We offer competitive benefits based on parity and consistency and support our people with flexible medical, life insurance, and retirement options. We also encourage employees to give back to their communities through our volunteer programs.\n\nWe\u2019re committed to including people with disabilities at all stages of the employment process. If you require accessibility assistance or accommodation for a disability at any point, let us know by emailing accommodation-request_mb@oracle.com or by calling +1 888 404 2494 in the United States.\n\nOracle is an Equal Employment Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, national origin, sexual orientation, gender identity, disability and protected veterans\u2019 status, or any other characteristic protected by law. Oracle will consider for employment qualified applicants with arrest and conviction records pursuant to applicable law.",
-      "easy_apply": false,
+      "easy_apply": true,
       "url": "https://www.linkedin.com/jobs/view/4225142137",
       "posted_date": "2025-05-29T14:18:47.333003",
-      "company_apply_url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/job/269797/?utm_medium=jobboard&utm_source=LinkedIn"
+      "company_apply_url": "https://www.linkedin.com/jobs/view/4223296482/"
     }
   ],
   "resume_customizations": [
     {
       "base_resume_path": "./data/base_resume.pdf",
-      "output_path": "./data/customized_resumes/resume_4225142137_Oracle_Software Developer.pdf",
-      "filename": "resume_4225142137_Oracle_Software Developer.pdf",
+      "output_path": "./data/customized_resumes/resume_4225142137_PhonePe_Software Developer.pdf",
+      "filename": "resume_4225142137_PhonePe_Software Developer.pdf",
       "job_title": "",
       "company": "",
       "customization_level": "moderate",
@@ -55,10 +55,10 @@
     {
       "job_id": "4225142137",
       "job_title": "Software Developer",
-      "company": "Oracle",
-      "file_path": "./data/customized_resumes/resume_4225142137_Oracle_Software Developer.pdf",
+      "company": "PhonePe",
+      "file_path": "./data/customized_resumes/resume_4225142137_PhonePe_Software Developer.pdf",
       "timestamp": "2025-05-29T14:24:03.998051",
-      "filename": "resume_4225142137_Oracle_Software Developer.pdf"
+      "filename": "resume_4225142137_PhonePe_Software Developer.pdf"
     }
   ]
 }
