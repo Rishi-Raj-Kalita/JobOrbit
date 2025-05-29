@@ -12,7 +12,7 @@ from agno.models.ollama import Ollama
 from agno.models.aws import AwsBedrock
 from agno.utils.pprint import pprint_run_response
 
-from linkedin_api import Linkedin
+from linkedin_api_test import Linkedin
 from langchain_community.document_loaders import CSVLoader
 from langchain_core.documents import Document
 from resume_customizer import ResumeCustomizer
@@ -22,6 +22,19 @@ load_dotenv()
 
 # Initialize ResumeCustomizer
 resume_customizer = ResumeCustomizer()
+
+import boto3
+from botocore.config import Config
+
+config = Config(connect_timeout=5,
+                read_timeout=5 * 60,
+                retries={'max_attempts': 2})
+bedrock_client = boto3.client(
+    'bedrock-runtime',
+    aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+    aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
+    region_name='us-east-1',
+    config=config)
 
 
 def init_linkedin_api():
@@ -55,15 +68,16 @@ def get_model(provider: str):
     if provider == 'ollama':
         return Ollama(id='llama3.1')
     elif provider == 'aws':
-        return AwsBedrock(id="anthropic.claude-3-sonnet-20240229-v1:0",
-                          aws_region='us-east-1')
+        return AwsBedrock(id="us.anthropic.claude-3-7-sonnet-20250219-v1:0",
+                          aws_region='us-east-1',
+                          client=bedrock_client)
     else:
         raise ValueError("Unsupported provider")
 
 
 def read_job_preferences() -> str:
     """Read job preferences from CSV file"""
-    #time.sleep(60)
+    time.sleep(60)
     try:
         loader = CSVLoader(file_path='./data/job_pref.csv',
                            csv_args={
@@ -99,7 +113,7 @@ def search_jobs(keywords: Optional[str] = None,
     Returns:
         list: List of job postings that match the criteria.
     """
-    #time.sleep(60)  # Simulate delay for testing
+    time.sleep(60)  # Simulate delay for testing
     if not linkedin_api:
         # Return mock data for testing
         return "Error: LinkedIn API not initialized. Please check your credentials."
@@ -243,7 +257,7 @@ def customize_resume_for_job(job_id: str,
     Returns:
         str: Success/error message with file path
     """
-    #time.sleep(60)
+    time.sleep(60)
     try:
         base_resume_path = "./data/base_resume.pdf"
 
@@ -337,7 +351,7 @@ def customize_resumes_for_all_jobs(job_search_results: str) -> str:
     Returns:
         str: Summary of customization results
     """
-    #time.sleep(60)
+    time.sleep(60)
     try:
         # Parse job results
         jobs = json.loads(job_search_results)
@@ -412,7 +426,7 @@ def customize_resumes_for_all_jobs(job_search_results: str) -> str:
 
 def get_job_by_id(job_id: str) -> Dict:
     """Retrieve specific job details by job_id from memory"""
-    #time.sleep(60)
+    time.sleep(60)
     try:
         memory_path = "./data/memory.json"
         if os.path.exists(memory_path):
@@ -432,7 +446,7 @@ def get_job_by_id(job_id: str) -> Dict:
 
 def list_customized_resumes() -> str:
     """List all customized resumes with their details"""
-    #time.sleep(60)
+    time.sleep(60)
     try:
         resumes_dir = "./data/customized_resumes"
         if not os.path.exists(resumes_dir):
@@ -483,6 +497,8 @@ def list_customized_resumes() -> str:
 
 
 # Create Agno agent with enhanced tools
+
+
 def create_agent(provider: str = 'ollama'):
     """Create Agno agent with enhanced batch resume customization tools"""
     tools = [
@@ -494,10 +510,12 @@ def create_agent(provider: str = 'ollama'):
         get_job_by_id
     ]
 
-    return Agent(tools=tools,
-                 show_tool_calls=True,
-                 model=get_model(provider),
-                 markdown=True)
+    return Agent(
+        tools=tools,
+        show_tool_calls=True,
+        model=get_model(provider),
+        markdown=True,
+    )
 
 
 def run_agent(query: str, provider: str = 'ollama'):
@@ -515,4 +533,4 @@ if __name__ == "__main__":
     Then customize my resume for each individual job found, 
     creating separate resume files for each position.
     """,
-              provider='ollama')
+              provider='aws')

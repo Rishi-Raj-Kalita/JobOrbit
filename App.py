@@ -236,9 +236,14 @@ class AutoApplyUI:
                     help="Comma-separated list of target companies")
                 experience = st.selectbox(
                     "💼 Experience Level",
-                    options=['F', 'C', 'P', 'Director', 'Executive'],
-                    index=['F', 'C', 'P', 'Director', 'Executive'
-                           ].index(saved_params.get("experience", "P")),
+                    options=[
+                        'Open For All', '1+ years', '2+ years', '3+ years',
+                        '4+ years', '5+years'
+                    ],
+                    index=[
+                        'Open For All', '1+ years', '2+ years', '3+ years',
+                        '4+ years', '5+years'
+                    ].index(saved_params.get("experience", "Open For All")),
                     help="F=Fresh, C=Associate, P=Mid-Senior")
 
             # Advanced filters

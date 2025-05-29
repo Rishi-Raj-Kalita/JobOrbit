@@ -10,12 +10,309 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from agno.agent import Agent
 from agno.models.ollama import Ollama
 from agno.models.aws import AwsBedrock
+import time
+
+import boto3
+from botocore.config import Config
+
+config = Config(connect_timeout=5,
+                read_timeout=5 * 60,
+                retries={'max_attempts': 2})
+bedrock_client = boto3.client(
+    'bedrock-runtime',
+    aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+    aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
+    region_name='us-east-1',
+    config=config)
+
+import re
+import subprocess
+import os
+import tempfile
+from typing import Dict, List, Tuple
+
+import re
+import subprocess
+import os
+import tempfile
+import shutil
+from pathlib import Path
+
+
+def create_agent_safe_latex_resume(text: str, output_path: str) -> bool:
+    """Create LaTeX resume that works reliably in agent environments."""
+
+    def find_pdflatex():
+        """Find pdflatex executable in various locations."""
+        possible_paths = [
+            'pdflatex',  # In PATH
+            '/usr/bin/pdflatex',  # Linux
+            '/usr/local/bin/pdflatex',  # Linux/macOS
+            '/Library/TeX/texbin/pdflatex',  # macOS MacTeX
+            '/usr/local/texlive/2023/bin/x86_64-linux/pdflatex',  # TeXLive
+            '/usr/local/texlive/2024/bin/x86_64-linux/pdflatex',  # TeXLive
+        ]
+
+        for path in possible_paths:
+            if shutil.which(path):
+                return path
+
+        return None
+
+    def clean_text_robust(text):
+        """Ultra-robust text cleaning for LaTeX."""
+        if not text:
+            return ""
+
+        # Handle special characters very carefully
+        text = str(text)  # Ensure it's a string
+
+        # Order matters - backslash first!
+        replacements = [
+            ('\\', '\\textbackslash{}'),
+            ('{', '\\{'),
+            ('}', '\\}'),
+            ('$', '\\$'),
+            ('&', '\\&'),
+            ('%', '\\%'),
+            ('#', '\\#'),
+            ('^', '\\textasciicircum{}'),
+            ('_', '\\_'),
+            ('~', '\\textasciitilde{}'),
+        ]
+
+        for old, new in replacements:
+            text = text.replace(old, new)
+
+        # Convert markdown formatting
+        text = re.sub(r'\*\*([^*]+?)\*\*', r'\\textbf{\1}', text)
+        text = re.sub(r'\*([^*]+?)\*', r'\\textit{\1}', text)
+
+        # Fix URLs
+        text = re.sub(r'//([^\s]+)', r'https://\1', text)
+
+        # Remove any remaining problematic characters
+        text = re.sub(r'[^\w\s\.,;:()\[\]/@\-+\\{}]', '', text)
+
+        return text.strip()
+
+    # Minimal LaTeX template to avoid package conflicts
+    latex_template = r"""
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.75in]{geometry}
+
+% Basic formatting only
+\renewcommand{\familydefault}{\sfdefault}
+\pagestyle{empty}
+
+% Simple section formatting
+\makeatletter
+\renewcommand{\section}[1]{%
+  \vspace{12pt}%
+  {\large\bfseries #1}%
+  \vspace{6pt}%
+  \hrule%
+  \vspace{6pt}%
+}
+\makeatother
+
+\begin{document}
+
+%CONTENT%
+
+\end{document}
+"""
+
+    try:
+        # Check if pdflatex is available
+        pdflatex_path = find_pdflatex()
+        if not pdflatex_path:
+            print("Error: pdflatex not found in system PATH")
+            print("Available paths checked:")
+            print("- Standard PATH locations")
+            print("- /usr/bin/pdflatex")
+            print("- /usr/local/bin/pdflatex")
+            print("- /Library/TeX/texbin/pdflatex")
+            return False
+
+        print(f"Using pdflatex at: {pdflatex_path}")
+
+        # Parse content very simply
+        lines = [line.strip() for line in text.split('\n') if line.strip()]
+        latex_content = ""
+
+        for line in lines:
+            # Name (main title)
+            if line.startswith('# '):
+                name = clean_text_robust(line[2:])
+                latex_content += f"\\begin{{center}}\\Huge\\textbf{{{name}}}\\\\[0.5cm]\\end{{center}}\n\n"
+
+            # Section headers
+            elif line.startswith('## '):
+                section = clean_text_robust(line[3:])
+                latex_content += f"\\section{{{section}}}\n\n"
+
+            # Contact info (center these)
+            elif any(
+                    line.startswith(x)
+                    for x in ['Email:', 'Linkedin:', 'Mobile:']):
+                contact = clean_text_robust(line)
+                latex_content += f"\\begin{{center}}{contact}\\end{{center}}\n"
+
+            # Bullet points - convert to simple paragraphs to avoid itemize issues
+            elif line.startswith(('• ', '- ', '* ')):
+                bullet_text = clean_text_robust(line[2:])
+                if bullet_text:
+                    latex_content += f"\\noindent $\\bullet$ {bullet_text}\\\\[0.2cm]\n"
+
+            # Sub-bullets
+            elif line.startswith('◦ '):
+                sub_bullet = clean_text_robust(line[2:])
+                if sub_bullet:
+                    latex_content += f"\\hspace{{0.5cm}}$\\circ$ {sub_bullet}\\\\[0.1cm]\n"
+
+            # Regular paragraphs
+            else:
+                clean_line = clean_text_robust(line)
+                if clean_line:
+                    latex_content += f"{clean_line}\\\\[0.2cm]\n"
+
+        # Create full document
+        full_latex = latex_template.replace('%CONTENT%', latex_content)
+
+        # Use absolute paths and proper error handling
+        with tempfile.TemporaryDirectory() as temp_dir:
+            temp_dir = Path(temp_dir)
+
+            # Write LaTeX file
+            tex_file = temp_dir / 'resume.tex'
+            tex_file.write_text(full_latex, encoding='utf-8')
+
+            # Save debug copy
+            debug_path = Path(output_path).with_suffix('.tex')
+            debug_path.write_text(full_latex, encoding='utf-8')
+            print(f"Debug LaTeX saved to: {debug_path}")
+
+            # Set environment variables for LaTeX
+            env = os.environ.copy()
+            env['TEXMFOUTPUT'] = str(temp_dir)
+
+            # Compile with full path and environment
+            cmd = [
+                str(pdflatex_path), '-output-directory',
+                str(temp_dir), '-interaction=nonstopmode', '-halt-on-error',
+                str(tex_file)
+            ]
+
+            print(f"Running command: {' '.join(cmd)}")
+
+            result = subprocess.run(
+                cmd,
+                cwd=str(temp_dir),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=30  # 30 second timeout
+            )
+
+            if result.returncode != 0:
+                print(
+                    f"LaTeX compilation failed with return code: {result.returncode}"
+                )
+                print("STDOUT:", result.stdout[-1000:])  # Last 1000 chars
+                print("STDERR:", result.stderr[-1000:])
+
+                # Check log file
+                log_file = temp_dir / 'resume.log'
+                if log_file.exists():
+                    log_content = log_file.read_text()
+                    print("\nRelevant log lines:")
+                    for line in log_content.split('\n'):
+                        if any(keyword in line.lower() for keyword in
+                               ['error', '!', 'undefined', 'missing']):
+                            print(f"  {line}")
+
+                return False
+
+            # Copy PDF to final location
+            pdf_file = temp_dir / 'resume.pdf'
+            if pdf_file.exists():
+                # Use shutil.copy2 for better compatibility
+                shutil.copy2(str(pdf_file), output_path)
+                print(f"Successfully created PDF: {output_path}")
+                return True
+            else:
+                print("PDF file was not created")
+                return False
+
+    except subprocess.TimeoutExpired:
+        print("LaTeX compilation timed out (>30 seconds)")
+        return False
+    except Exception as e:
+        print(f"Unexpected error: {type(e).__name__}: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+
+
+# Test function to verify environment
+def test_latex_environment():
+    """Test if LaTeX is properly set up."""
+    print("Testing LaTeX environment...")
+
+    # Check pdflatex
+    if shutil.which('pdflatex'):
+        print("✓ pdflatex found in PATH")
+
+        # Test basic compilation
+        test_latex = r"""
+\documentclass{article}
+\begin{document}
+Hello World!
+\end{document}
+"""
+        try:
+            with tempfile.TemporaryDirectory() as temp_dir:
+                tex_file = Path(temp_dir) / 'test.tex'
+                tex_file.write_text(test_latex)
+
+                result = subprocess.run([
+                    'pdflatex', '-output-directory', temp_dir,
+                    '-interaction=nonstopmode',
+                    str(tex_file)
+                ],
+                                        capture_output=True,
+                                        timeout=10)
+
+                if result.returncode == 0:
+                    print("✓ LaTeX compilation test successful")
+                    return True
+                else:
+                    print("✗ LaTeX compilation test failed")
+                    print("Error:", result.stderr[:200])
+        except Exception as e:
+            print(f"✗ LaTeX test error: {e}")
+    else:
+        print("✗ pdflatex not found in PATH")
+
+    return False
+
+
+# Usage for agents:
+def safe_create_resume(text: str, output_path: str) -> bool:
+    """Entry point that tests environment first."""
+    if not test_latex_environment():
+        print("LaTeX environment not properly configured")
+        return False
+
+    return create_agent_safe_latex_resume(text, output_path)
 
 
 class ResumeCustomizer:
     """Enhanced Resume Customizer with better error handling, tracking, and flexibility."""
 
-    def __init__(self, model_provider='ollama', model_id=None):
+    def __init__(self, model_provider='aws', model_id=None):
         """
         Initialize ResumeCustomizer with configurable model provider.
         
@@ -42,6 +339,9 @@ class ResumeCustomizer:
 
     def _get_model(self, provider: str, model_id: Optional[str] = None):
         """Get LLM model based on provider."""
+        return AwsBedrock(id="us.anthropic.claude-3-7-sonnet-20250219-v1:0",
+                          aws_region='us-east-1',
+                          client=bedrock_client)
         if provider == 'ollama':
             return Ollama(id=model_id or 'llama3.1')
         elif provider == 'aws':
@@ -428,84 +728,30 @@ class ResumeCustomizer:
             bool: Success status
         """
         try:
-            if preserve_formatting:
-                return self._create_formatted_pdf(original_pdf_path,
-                                                  customized_text, output_path)
-            else:
-                return self._create_simple_pdf(customized_text, output_path)
+            # if preserve_formatting:
+            #     return self._create_formatted_pdf(original_pdf_path,
+            #                                       customized_text, output_path)
+            # else:
+            self.logger.info(customized_text)
+            return self._create_simple_pdf(customized_text, output_path)
 
         except Exception as e:
             self.logger.error(f"Error creating customized PDF: {e}")
             return False
 
-    def _create_formatted_pdf(self, original_pdf_path: str,
-                              customized_text: str, output_path: str) -> bool:
-        """Create PDF preserving original formatting."""
-        try:
-            # Open the original PDF
-            doc = fitz.open(original_pdf_path)
-
-            # Split customized text into pages based on original structure
-            text_splitter = RecursiveCharacterTextSplitter(
-                chunk_size=2000,  # Adjust based on page capacity
-                chunk_overlap=100,
-                separators=["\n\n", "\n", " ", ""])
-
-            text_chunks = text_splitter.split_text(customized_text)
-
-            # Create new document
-            new_doc = fitz.open()
-
-            for i, chunk in enumerate(text_chunks):
-                if i < len(doc):
-                    # Use original page as template
-                    original_page = doc[i]
-                    new_page = new_doc.new_page(
-                        width=original_page.rect.width,
-                        height=original_page.rect.height)
-                else:
-                    # Create new page with standard dimensions
-                    new_page = new_doc.new_page()
-
-                # Insert text with basic formatting
-                text_rect = fitz.Rect(50, 50, new_page.rect.width - 50,
-                                      new_page.rect.height - 50)
-                new_page.insert_textbox(text_rect,
-                                        chunk,
-                                        fontsize=11,
-                                        fontname="helv")
-
-            # Save the customized PDF
-            new_doc.save(output_path)
-            new_doc.close()
-            doc.close()
-
-            self.logger.info(
-                f"Successfully created formatted PDF: {output_path}")
-            return True
-
-        except Exception as e:
-            self.logger.error(f"Error creating formatted PDF: {e}")
-            return self._create_simple_pdf(customized_text, output_path)
-
     def _create_simple_pdf(self, text: str, output_path: str) -> bool:
-        """Create simple PDF with text content."""
+        """Create simple DOCX with text content."""
         try:
-            doc = fitz.open()
-            page = doc.new_page()
-
-            text_rect = fitz.Rect(50, 50, page.rect.width - 50,
-                                  page.rect.height - 50)
-            page.insert_textbox(text_rect, text, fontsize=11, fontname="helv")
-
-            doc.save(output_path)
-            doc.close()
-
-            self.logger.info(f"Successfully created simple PDF: {output_path}")
+            safe_create_resume(text, output_path)
+            self.logger.info(
+                f"Successfully created simple DOCX at {output_path}")
             return True
 
+        except ImportError as e:
+            self.logger.error(f"python-docx library not installed: {e}")
+            return False
         except Exception as e:
-            self.logger.error(f"Error creating simple PDF: {e}")
+            self.logger.error(f"Error creating simple DOCX: {e}")
             return False
 
     def customize_resume(self,
@@ -548,6 +794,7 @@ class ResumeCustomizer:
             # Extract text from base resume
             self.logger.info("Extracting text from base resume...")
             resume_data = self.extract_text_from_pdf(base_resume_path)
+            self.logger.info(resume_data['text'])
 
             if not resume_data['text'].strip():
                 self.logger.error("Failed to extract text from resume")
@@ -556,6 +803,7 @@ class ResumeCustomizer:
             # Analyze job description
             self.logger.info("Analyzing job description...")
             job_analysis = self.analyze_job_description(job_description)
+            self.logger.info(job_analysis)
 
             if 'error' in job_analysis:
                 self.logger.warning(
@@ -563,7 +811,9 @@ class ResumeCustomizer:
 
             # Analyze current resume
             self.logger.info("Analyzing resume content...")
+            time.sleep(60)
             resume_analysis = self.analyze_resume(resume_data['text'])
+            self.logger.info(resume_analysis)
 
             if 'error' in resume_analysis:
                 self.logger.warning(
@@ -574,9 +824,12 @@ class ResumeCustomizer:
             self.logger.info(
                 f"Generating customized content (level: {customization_level})..."
             )
+            time.sleep(60)
             customized_text = self.generate_customized_content(
                 resume_analysis, job_analysis, resume_data['text'],
                 customization_level)
+            self.logger.info(customized_text)
+            time.sleep(60)
 
             # Create customized PDF
             self.logger.info("Creating customized PDF...")
@@ -780,3 +1033,79 @@ class ResumeCustomizer:
         except Exception as e:
             self.logger.error(f"Error during cleanup: {e}")
             return 0
+
+
+if __name__ == "__main__":
+    text = """
+# Rishiraj Kalita
+Email: rishirajkalita19@gmail.com  
+Linkedin: //Rishirak Kalita  
+Mobile: 7386260082
+
+## Education
+• **National Institute of Technology, Silchar**  
+India  
+Bachelor of Technology - Computer Science and Engineering; GPA: 8.8  
+2019 - 2023
+
+## Skills
+• **Programming:**  
+Advanced - Python, Spark, SQL, PL/SQL
+• **Software Development:**  
+Architecture Design, Debugging, Application Development, Code Optimization
+• **Relation Databases:**  
+RDS, Redshift, Postgres
+• **Cloud Solutions:**  
+AWS Services, Data Architecture, Solution Design
+• **Data Tools:**  
+Amazon Glue, EMR, Airflow, S3
+• **Development Frameworks:**  
+PySpark, HDFS, Hive
+
+## Experience
+• **ORGANIZATION: Amazon Web Services**  
+**ROLE: Consultant Data Analytics**  
+August 2023 - Present
+◦ Architecting Software Solutions: Designed scalable and performant software platforms tailored to customer's technical requirements, ensuring high availability and robust architecture.  
+◦ Technical Consulting: Providing expert guidance on software development and architecture, including troubleshooting complex issues and recommending optimal implementation approaches.  
+◦ Debugging and Optimization: Identifying and resolving software challenges related to platform and application performance, implementing solutions that enhance system efficiency and stability.
+
+• **Organization: Mastercard**  
+**Role: Software Developer Intern**  
+May 2022 - July 2022  
+◦ Developed software applications at scale, focusing on architecture design and performance optimization.  
+◦ Debugged complex issues in production systems and implemented improvements to enhance reliability.  
+◦ Landed PPO for my work during the internship based on technical problem-solving abilities.
+
+• **ORGANISATION: GEEKSFORGEEKS AND SCALER**  
+**Role: Content Writer**  
+Freelancing  
+◦ Created technically accurate programming tutorials and problem-solving guides focusing on software development concepts and algorithms.  
+◦ Developed educational content on Graphs, Trie, Dynamic Programming, SegmentTrees, and other advanced programming topics.  
+◦ List of published articles: //Rishiraj-Kalita-Articles-Link
+
+## Projects
+◦ **CLOUDERA TO EMR MIGRATION**  
+∗**Task:** Executed a comprehensive software architecture migration from Cloudera to Amazon EMR, designing and developing data processing applications using Spark jobs, performing extensive debugging and validation to ensure code integrity, successfully migrating approximately 5000 jobs to the Amazon EMR platform.  
+∗**Technologies:** Hive, PySpark, EMR, S3, IAM
+
+◦ **MIGRATING FROM INFORMATICA TO PYSPARK - Amazon GLUE**  
+∗**Task:** Architected and implemented robust software solutions to replace Informatica workflows, developing custom PySpark applications for processing and transforming data. Enhanced overall system architecture while troubleshooting complex integration issues between Amazon S3 and Redshift.  
+∗**Technologies:** Amazon S3, Glue, MWAA(Airflow), Redshift.
+
+◦ **MIGRATING FROM SISENSE To Business Intelligent Service - Amazon QUICKSIGHT**  
+∗**Task:** Designed and developed software components to improve efficiency and consistency of dashboards, transitioning from Sisense to Amazon Quicksight. Architected data models based on different business logic, creating ETL applications that provided reliable data processing.  
+∗**Technologies:** Amazon Quicksight, Amazon S3, Glue, Pyspark.
+
+## Certifications
+• AWS Certified Data Engineer  
+• AWS Certified Machine Learning Specialist  
+• AWS Certified Solutions Architect  
+• AWS Certified AI Practitioner  
+• Solved more than 1500 algorithmic questions on various competitive coding platforms
+"""
+    result = create_latex_resume(
+        text,
+        '/Users/rishirajkalita/Desktop/job_orbit_v2/data/customized_resumes/rishi_resume.pdf'
+    )
+    print(result)
