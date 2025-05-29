@@ -128,6 +128,8 @@ async def apply_for_job(job, resume_path):
     application_url = job.get('company_apply_url', job.get('url'))
 
     # Define initial actions to open the job application page
+    if application_url is None:
+        application_url = job.get("url")
     initial_actions = [{'open_tab': {'url': application_url}}]
 
     # Create dynamic tasks based on the job and resume information
@@ -199,7 +201,7 @@ async def apply_for_job(job, resume_path):
         return {"status": "error", "message": str(e)}
 
 
-async def main():
+async def initiate_job_application():
     # Create logs directory if it doesn't exist
     os.makedirs("logs", exist_ok=True)
 
@@ -245,4 +247,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(initiate_job_application())

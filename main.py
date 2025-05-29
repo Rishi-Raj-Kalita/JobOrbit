@@ -149,11 +149,12 @@ def search_jobs(keywords: Optional[str] = None,
             f"Keywords: {keywords}, Companies: {companies}, Location: {location_name}"
         )
 
-        jobs = linkedin_api.search_jobs(keywords=keywords,
-                                        companies=companies,
-                                        location_name=location_name,
-                                        listed_at=listed_at,
-                                        limit=1)  #need to be replaced by limit
+        jobs = linkedin_api.search_jobs(
+            keywords=keywords,
+            companies=companies,
+            location_name=location_name,
+            listed_at=listed_at,
+            limit=15)  #need to be replaced by limit
 
         job_results = []
         for job in jobs:
@@ -178,12 +179,25 @@ def search_jobs(keywords: Optional[str] = None,
                     "text", "No description available")
                 job_location = job_data.get("formattedLocation",
                                             "Unknown Location")
-                easy_apply = job_data.get("applyMethod",
-                                          {}).get("easyApplyUrl") is not None
+
+                # Try to get easyApplyUrl from multiple potential paths
+                easy_apply_url = job_data.get("applyMethod",
+                                              {}).get("easyApplyUrl")
+                if not easy_apply_url:
+                    easy_apply_url = job_data.get("applyMethod", {}).get(
+                        "com.linkedin.voyager.jobs.ComplexOnsiteApply",
+                        {}).get("easyApplyUrl")
+
+                # easy_apply is True if an easy apply URL is found
+                easy_apply = easy_apply_url is not None
 
                 company_apply_url = None
 
+                print(easy_apply_url)
+                print("-" * 80)
+
                 if not easy_apply:
+
                     company_apply_url = job_data.get("applyMethod", {}).get(
                         "com.linkedin.voyager.jobs.OffsiteApply",
                         {}).get("companyApplyUrl")
@@ -193,15 +207,15 @@ def search_jobs(keywords: Optional[str] = None,
                     "title": job_title,
                     "company": company_name,
                     "location": job_location,
-                    "description":
-                    job_description,  # Full description for resume customization
+                    "description": job_description,
                     "easy_apply": easy_apply,
                     "url": f"https://www.linkedin.com/jobs/view/{job_id}",
                     "posted_date": datetime.now().isoformat(),
                     "company_apply_url": company_apply_url
                 }
 
-                job_results.append(job_result)
+                if easy_apply:
+                    job_results.append(job_result)
 
                 # Add delay to avoid rate limiting
                 time.sleep(0.5)
@@ -211,9 +225,10 @@ def search_jobs(keywords: Optional[str] = None,
                 continue
 
         # Save job results to memory for tracking
+
         save_job_search_results(job_results, keywords, companies,
                                 location_name)
-        print("returning results")
+        print("job saved")
 
         return json.dumps(job_results, indent=2)
 

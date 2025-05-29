@@ -5,6 +5,7 @@ import os
 import fitz
 from datetime import datetime
 from main import create_agent, init_linkedin_api
+from job_application_automation import initiate_job_application
 from agno.utils.pprint import pprint_run_response
 from typing import Iterator, Dict, Any
 from agno.agent import Agent, RunResponse
@@ -631,17 +632,13 @@ class AutoApplyUI:
                 self.run_agent_query(query, settings['provider'])
 
             if apply and st.session_state.search_params:
-                params = st.session_state.search_params
-                companies_str = ', '.join(params['companies'])
-                auto_apply_text = "and automatically submit applications" if settings[
-                    'auto_apply'] else "and prepare applications for manual submission"
-                query = f"""
-                Find {params['keywords']} jobs at {companies_str} in {params['location']} 
-                with {params['experience']} experience level.
-                Customize my resume for each matching job {auto_apply_text}.
-                Focus on jobs that match my preferences and have easy apply options.
-                """
-                self.run_agent_query(query, settings['provider'])
+                progress_bar = st.progress(0)
+                status_text = st.empty()
+                status_text.text("🤖 Applying Jobs...")
+                progress_bar.progress(50)
+                asyncio.run(initiate_job_application())
+                status_text.text("✅ Applications submitted!")
+                progress_bar.progress(100)
 
         with tab3:
             self.show_enhanced_stats()

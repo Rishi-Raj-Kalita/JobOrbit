@@ -1,64 +1,139 @@
 {
   "job_searches": [
     {
-      "timestamp": "2025-05-29T14:12:56.374533",
-      "keywords": "SDE-1 \"Software Development Engineer\"",
+      "timestamp": "2025-05-29T23:45:49.390423",
+      "keywords": "Software Engineer",
       "companies": [],
       "location": "India",
-      "jobs_count": 1
-    },
-    {
-      "timestamp": "2025-05-29T14:18:47.838673",
-      "keywords": "SDE-1 software development engineer",
-      "companies": [],
-      "location": "India",
-      "jobs_count": 1
+      "jobs_count": 4
     }
   ],
   "jobs_found": [
     {
-      "job_id": "4224595712",
-      "title": "Software Development Engineer",
-      "company": "Amazon",
-      "location": "Gurugram, Haryana, India",
-      "description": "Description\n\nDo you want to define the future of Internet commerce?\n\nAre you a top-notch software engineer with a creative flare, strong problem-solving skills, the drive to build and ship products fast, a solid computer science background and the desire to build Amazon's next generation Internet-facing technology? Come talk with us about joining our team to help our team serve customers better.\n\nIs your next project defining a world class Internet service?\n\nWith us, you will be building cutting-edge applications and services in an environment of highly distributed systems used by Amazon transportation . Your innovation will provide new functionality for Amazon Transportation enabling millions of packages to move smoothly across amazon transportation network across the globe.\n\nCan you work at the scale of the biggest Internet companies?\n\nThe solutions that you will deploy must scale to serve missions of customers worldwide, process thousands of transactions per minute and have an uptime greater than 99.99%.\n\nDo you believe systems can always be made faster?\n\nIf so, come be a member of Amazon\u2019s Core Transportation Technology team. We build software systems that ensure millions of packages reach our customers in the fastest possible time. The systems you build will be at the forefront of our goal to ensure we are able to deliver packages same day or even within hours.\n\nAre you pedantic about code quality ?\n\nIf so, we are looking for an individual like you to join a team of world class developers and help us write highest quality code which is readable, maintainable and can give our customers a bug free experience.\n\nAmazon is a premier place to build and deploy world class software\n\nAmazon has come a long way since opening on the World Wide Web in July 1995. Today, we operate retail websites in multiple countries across geographies, offering products in many categories (books, media, digital, electronics etc.) worldwide, and we still like to work hard, have fun and make history! The Amazon.com brand has become synonymous with a superior level of convenience, selection, low prices, and customer service.\n\nAmazon\u2019s global fulfillment network enables any merchant in any of the geography ship items that you order on Amazon, to any place on earth. There are a variety of ways in which we acquire items from vendors to our warehouses, ship items from one location to another, and several intermediate locations through which the package travels before reaching the customer. There are millions of such packages, each with different attributes, and different delivery requirements. What results is a highly dense graph of source, intermediate and destination nodes, with arcs between them representing possible paths for packages, with different costs and times along each arc. Accounting for all these constraints, and maximizing the number of shipments shipped, while minimizing cost, providing a variety of delivery options and maximizing delivery performance is Transportation Engineering's primary focus.\n\nAbout The Team\n\nWe are a highly agile and self driven team of talented and motivated engineers based out of Delhi. We are at the heart of Amazon transportation and are responsible for managing entire package lifecycle. Team owns the orchestration of transportation requests, state management, proactive deviation management at network level, progress tracker operations like delivery to locker, cancel and notification of transportation events to downstream clients. Come join the team that sets a high bar for software development and operational excellence practices. We use Amazon wide tools and processes to a large extent, and we also contribute to the Amazon wide arsenal of tools that all businesses use to be more effective. We are early adopters of new tools and technologies, before they become mandatory.\n\nBasic Qualifications\n\n 3+ years of non-internship professional software development experience 2+ years of non-internship design or architecture (design patterns, reliability and scaling) of new and existing systems experience 3+ years of Video Games Industry (supporting title Development, Release, or Live Ops) experience Experience programming with at least one software programming language\n\nPreferred Qualifications\n\n 3+ years of full software development life cycle, including coding standards, code reviews, source control management, build processes, testing, and operations experience Bachelor's degree in computer science or equivalent\n\nOur inclusive culture empowers Amazonians to deliver the best results for our customers. If you have a disability and need a workplace accommodation or adjustment during the application and hiring process, including support for the interview or onboarding process, please visit https://amazon.jobs/content/en/how-we-hire/accommodations for more information. If the country/region you\u2019re applying in isn\u2019t listed, please contact your Recruiting Partner.\n\n\nCompany - ADCI - Haryana\n\nJob ID: A2975005",
-      "easy_apply": false,
-      "url": "https://www.linkedin.com/jobs/view/4224595712",
-      "posted_date": "2025-05-29T14:12:55.873836",
-      "company_apply_url": "https://www.amazon.jobs/jobs/2975005/software-development-engineer?cmpid=SPLICX0248M&utm_source=linkedin.com&utm_campaign=cxro&utm_medium=social_media&utm_content=job_posting&ss=paid"
+      "job_id": "4240174915",
+      "title": "Data Engineer",
+      "company": "Particle41",
+      "location": "Pune, Maharashtra, India",
+      "description": "\n\nParticle41 is seeking a talented and versatile Data Engineer to join our innovative team. As a Data Engineer, you will play a key role in designing, building, and maintaining robust data pipelines and infrastructure to support our clients' data needs. You will work on end-to-end data solutions, collaborating with cross-functional teams to ensure high-quality, scalable, and efficient data delivery. This is an exciting opportunity to contribute to impactful projects, solve complex data challenges, and grow your skills in a supportive and dynamic environment.\n\nIn This Role, You Will:\n\n\n\nSoftware Development\n\nDesign, develop, and maintain scalable ETL (Extract, Transform, Load) pipelines to process large volumes of data from diverse sources.Build and optimize data storage solutions, such as data lakes and data warehouses, to ensure efficient data retrieval and processing.Integrate structured and unstructured data from various internal and external systems to create a unified view for analysis.Ensure data accuracy, consistency, and completeness through rigorous validation, cleansing, and transformation processes.Maintain comprehensive documentation for data processes, tools, and systems while promoting best practices for efficient workflows.\n\nRequirements Gathering and Analysis\n\nCollaborate with product managers, and other stakeholders to gather requirements and translate them into technical solutions.Participate in requirement analysis sessions to understand business needs and user requirements.Provide technical insights and recommendations during the requirements-gathering process.\n\nAgile Development\n\nParticipate in Agile development processes, including sprint planning, daily stand-ups, and sprint reviews.Work closely with Agile teams to deliver software solutions on time and within scope.Adapt to changing priorities and requirements in a fast-paced Agile environment.\n\nTesting and Debugging\n\nConduct thorough testing and debugging to ensure the reliability, security, and performance of applications.Write unit tests and validate the functionality of developed features and individual elements.Writing integration tests to ensure different elements within a given application function as intended and meet desired requirements.Identify and resolve software defects, code smells, and performance bottlenecks.\n\nContinuous Learning and Innovation\n\nStay updated with the latest technologies and trends in full-stack development.Propose innovative solutions to improve the performance, security, scalability, and maintainability of applications.Continuously seek opportunities to optimize and refactor existing codebase for better efficiency.Stay up to date with cloud platforms such as AWS, Azure, or Google Cloud Platform.\n\nCollaboration\n\nCollaborate effectively with cross-functional teams, including testers, and product managers.Foster a collaborative and inclusive work environment where ideas are shared and valued.\n\nSkills and Experience We Value:\n\nBachelor's degree in computer science, Engineering, or related field.Proven experience as a Data Engineer, with a minimum of 3 years of experience.Proficiency in Python programming language.Experience with database technologies such as SQL (e.g., MySQL, PostgreSQL) and NoSQL (e.g., MongoDB) databases.Strong understanding of Programming Libraries/Frameworks and technologies such as Flask, API frameworks, datawarehousing/lakehouse, principles, database and ORM, data analysis databricks, panda's, Spark, Pyspark, Machine learning, OpenCV, scikit-learn.Utilities & Tools: logging, requests, subprocess, regex, pytestELK stack, Redis, distributed task queuesStrong understanding of data warehousing/lakehousing principles and concurrent/parallel processing concepts.Familiarity with at least one cloud data engineering stack (Azure, AWS, or GCP) and the ability to quickly learn and adapt to new ETL/ELT tools across various cloud providers.Familiarity with version control systems like Git and collaborative development workflows.Competence in working on Linux OS and creating shell scripts.Solid understanding of software engineering principles, design patterns, and best practices.Excellent problem-solving and analytical skills, with a keen attention to detail.Effective communication skills, both written and verbal, and the ability to collaborate in a team environment.Adaptability and willingness to learn new technologies and tools as needed.\n\nAbout Particle41\n\nOur core values of Empowering, Leadership, Innovation, Teamwork, and Excellence drive everything we do to achieve the ultimate outcomes for our clients. Empowering Leadership for Innovation in Teamwork with Excellence ( ELITE )\n\nE - Empowering: Enabling individuals to reach their full potential.L - Leadership: Taking initiative and guiding each other toward success.I - Innovation: Embracing creativity and new ideas to stay ahead.T - Teamwork: Collaborating with empathy to achieve common goals.E - Excellence: Striving for the highest quality in everything we do.\n\nWe seek team members who embody these values and are committed to contributing to our mission. Particle41 welcomes individuals from all backgrounds who are committed to our mission and values. We provide equal employment opportunities to all employees and applicants, ensuring that hiring and employment decisions are based on merit and qualifications without discrimination based on race, color, religion, caste, age, sex, national origin, disability status, genetics, protected veteran status, sexual orientation, gender identity or expression, or any other characteristic protected by federal, state, local, or international laws. This policy applies to all aspects of employment and hiring.\n\nWe appreciate your interest and encourage applicants from these regions to apply. If you need any assistance during the application or interview process, please feel free to reach out to us at careers@Particle41.com.",
+      "easy_apply": true,
+      "url": "https://www.linkedin.com/jobs/view/4240174915",
+      "posted_date": "2025-05-29T23:43:47.726734",
+      "company_apply_url": null
     },
     {
-      "job_id": "4225142137",
-      "title": "Software Developer",
-      "company": "PhonePe",
-      "location": "Bengaluru, Karnataka, India ",
-      "description": "Job Description\n\nDesign, develop, troubleshoot and debug software programs for databases, applications, tools, networks etc.\n\nCareer Level - IC2\n\nResponsibilities\n\nAs a member of the software engineering division, you will apply basic to intermediate knowledge of software architecture to perform software development tasks associated with developing, debugging or designing software applications or operating systems according to provided design specifications. Build enhancements within an existing software architecture and occasionally suggest improvements to the architecture.\n\nAbout Us\n\nAs a world leader in cloud solutions, Oracle uses tomorrow\u2019s technology to tackle today\u2019s challenges. We\u2019ve partnered with industry-leaders in almost every sector\u2014and continue to thrive after 40+ years of change by operating with integrity.\n\nWe know that true innovation starts when everyone is empowered to contribute. That\u2019s why we\u2019re committed to growing an inclusive workforce that promotes opportunities for all.\n\nOracle careers open the door to global opportunities where work-life balance flourishes. We offer competitive benefits based on parity and consistency and support our people with flexible medical, life insurance, and retirement options. We also encourage employees to give back to their communities through our volunteer programs.\n\nWe\u2019re committed to including people with disabilities at all stages of the employment process. If you require accessibility assistance or accommodation for a disability at any point, let us know by emailing accommodation-request_mb@oracle.com or by calling +1 888 404 2494 in the United States.\n\nOracle is an Equal Employment Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, national origin, sexual orientation, gender identity, disability and protected veterans\u2019 status, or any other characteristic protected by law. Oracle will consider for employment qualified applicants with arrest and conviction records pursuant to applicable law.",
+      "job_id": "4236673615",
+      "title": "Associate Software Engineer",
+      "company": "GrowthJockey",
+      "location": "Gurugram, Haryana, India",
+      "description": "Message from CTO (Hiring Manager):\"Hello! I\u2019m Aresh Mishra, former Microsoft executive and current CTO at GrowthJockey. We are on a quest to build a top-tier tech team\u2014True Alpha\u2014to make a significant impact on billions of lives worldwide through our advanced technology ventures. If you\u2019re passionate about driving technological innovation and making a global difference, we\u2019d love for you to join our team.\u201d\nCompany Details:\nGrowthJockey is a leading venture architect that specialises in building technology led, digital startups for large enterprises. GrowthJockey is at the forefront of innovation, with specialisations in AI, machine learning, and digital transformation. Our team of experienced engineers, marketers, and experts deliver dynamic solutions that drive measurable results for businesses of all sizes.\nWe have built our own proprietary AI infrastructure, intellsys.ai. which is a groundbreaking AI AdTech platform, uniquely engineered to harness the transformative power of over 100 proprietary artificial intelligence models. It stands as a beacon for all business scales, from budding startups to established global enterprises, democratising advanced AI tools for marketing optimisation.\nWith expertise in incubating ventures, we've successfully incubated and launched over 25+ ventures for Fortune 500 companies, demonstrating our commitment to driving technological evolution and fostering industry leaders. Our dedication to staying ahead of the curve ensures that we provide our clients with nothing but the best in terms of technology and services.\nJ.D/Profile to be offered in detail:\nBackend developers at Growth Jockey are entrusted with designing, developing, anddeploying the core logic and functionality of web applications. This encompasses server-sideprogramming, database management, and system integration. Your role demandsproficiency in programming languages such as Node.js, PHP , and Python, along withexpertise in database systems like MySQL, MongoDB, and PostgreSQL. During onboarding,you'll receive training to bolster technical prowess and behavioural competencies inaccordance with defined proficiency levels outlined in the Expectation Framework.Additionally, you'll gain familiarity with organisation-specific tools and methodologies, whilehoning communication skills to excel within the company's standards.\nResponsibilities:\n\u25cf Collaborate with the development team to design, develop, and deploy scalablebackend solutions.\u25cf Write clean, efficient, and maintainable code using programming languages such asPython, Java, or Node.js.\u25cf Design and implement RESTful APIs for seamless communication between thefrontend and backend systems.\u25cf Integrate third-party services and APIs to enhance the functionality of ourapplications.\u25cf Develop and maintain databases, ensuring optimal performance, reliability, andsecurity.\u25cf Implement authentication and authorization mechanisms to protect sensitive data.\u25cf Conduct thorough testing of backend systems to identify and fix bugs andperformance issues.\u25cf Work closely with cross-functional teams to understand requirements and deliverhigh-quality solutions.\nRequirements:\nBachelor's degree in Computer Science, Software Engineering, or related field.\u25cf Strong understanding of object-oriented programming concepts.\u25cf Proficiency in one or more backend programming languages (e.g., Python, Java,Node.js).\u25cf Familiarity with databases such as MySQL, PostgreSQL, or MongoDB.\u25cf Basic knowledge of web development frameworks (e.g., Django, Spring Boot,Express.js).\u25cf Experience with version control systems (e.g., Git) is a plus.\u25cf Excellent problem-solving skills and attention to detail.\u25cf Ability to work effectively both independently and as part of a collaborative team.\u25cf Passion for learning and staying updated with emerging technologies in backenddevelopment.\nIf you are a proactive and ambitious individual with a passion for backend development, wewant to hear from you! Join us and be a part of our journey to reshape the digital landscapewith groundbreaking solutions.",
       "easy_apply": true,
-      "url": "https://www.linkedin.com/jobs/view/4225142137",
-      "posted_date": "2025-05-29T14:18:47.333003",
-      "company_apply_url": "https://www.linkedin.com/jobs/view/4223296482/"
+      "url": "https://www.linkedin.com/jobs/view/4236673615",
+      "posted_date": "2025-05-29T23:44:21.312802",
+      "company_apply_url": null
+    },
+    {
+      "job_id": "4237640200",
+      "title": "Data Engineer",
+      "company": "Infosys",
+      "location": "Bengaluru, Karnataka, India",
+      "description": "Infosys is looking to hire a data engineer",
+      "easy_apply": true,
+      "url": "https://www.linkedin.com/jobs/view/4237640200",
+      "posted_date": "2025-05-29T23:44:29.788482",
+      "company_apply_url": null
+    },
+    {
+      "job_id": "4240189094",
+      "title": "SDE 1 (Backend)",
+      "company": "slice",
+      "location": "Bengaluru, Karnataka, India",
+      "description": "About us\nslice, India\u2019s leading consumer payments and credit platform, has now merged with North East Small Finance Bank (NESFB), marking a significant step into the banking sector. Trusted by over 18 million Indians, we are on a mission to build the most loved bank in India\u2014offering simple, transparent, and customer-first banking.\n\nAbout the team\nEverything that you see on the internet - developers made it. Even the page that you\u2019ve opened right now and are reading this very line from - a developer. At slice, we\u2019re trying to build a world class product and that takes some crazy, world class engineers. A team so supportive - even if you miss a \u2018;\u2019 in your code, they got your back till the code runs successfully.\n\nAbout the role\nWe are looking for an experienced Backend developer to join our technology team. As a Backend developer, you\u2019ll work closely with our Design, Product, Data Science and Analytics team to develop microservices which focus on the financial needs of millennials in India. If you have excellent programming skills and a passion for developing applications or improving existing ones, we would like to meet you.\n\nWhat You will do\nDesign and develop microservices that can work in a large-scale multi-tenant environment.Explore design implications and work towards an appropriate balance between functionality, performance, and maintainability.Work with a cross-disciplined team of Design, Product, Data Science, and Analytics teams.Deploy and maintain the application in a secure AWS environment.Take ownership from the ideation phase to deployment and maintenance.Actively participate in the hiring process to bring world-class programmers to the team.\n\nWhat You will need\nAt least 1 year of experience in server-side development.Strong programming skills.Hands-on experience in API development and frameworks such as Express, Loopback, Hapi.Good understanding of SQL and NoSQL databases.Experience in test-driven development (Unit test and API test).Understanding of basic cloud computing concepts and experience in using any of the major cloud service providers(AWS/GCP/Azure).Ability to build and deploy the application in a containerized environment.Understanding of application logging and monitoring systems like Prometheus or Kibana.B.E/B.Tech/M.E./M.Tech/M.S. from a reputed university with a good academic record.Curiosity to explore cutting-edge technologies and bake them into the products.Zeal and drive to take end-to-end ownership.\n\nLife at slice\nLife so good, you\u2019d think we\u2019re kidding:\nCompetitive salaries. Period.An extensive medical insurance that looks out for our employees & their dependents. We\u2019ll love you and take care of you, our promise.Flexible working hours. Just don\u2019t call us at 3AM, we like our sleep schedule.Tailored vacation & leave policies so that you enjoy every important moment in your life.A reward system that celebrates hard work and milestones throughout the year. Expect a gift coming your way anytime you kill it here.Learning and upskilling opportunities. Seriously, not kidding.Good food, games, and a cool office to make you feel like home. An environment so good, you\u2019ll forget the term \u201ccolleagues can\u2019t be your friends\u201d.",
+      "easy_apply": true,
+      "url": "https://www.linkedin.com/jobs/view/4240189094",
+      "posted_date": "2025-05-29T23:45:02.148735",
+      "company_apply_url": null
     }
   ],
   "resume_customizations": [
     {
       "base_resume_path": "./data/base_resume.pdf",
-      "output_path": "./data/customized_resumes/resume_4225142137_PhonePe_Software Developer.pdf",
-      "filename": "resume_4225142137_PhonePe_Software Developer.pdf",
+      "output_path": "./data/customized_resumes/resume_4240174915_Particle41_Data Engineer.pdf",
+      "filename": "resume_4240174915_Particle41_Data Engineer.pdf",
       "job_title": "",
       "company": "",
       "customization_level": "moderate",
-      "job_description_preview": "Job Description\n\nDesign, develop, troubleshoot and debug software programs for databases, applications, tools, networks etc.\n\nCareer Level - IC2\n\nResponsibilities\n\nAs a member of the software engineer...",
-      "timestamp": "2025-05-29T14:19:59.631388",
-      "file_size": 40380,
+      "job_description_preview": "Particle41 is seeking a talented and versatile Data Engineer to join our innovative team. As a Data Engineer, you will play a key role in designing, building, and maintaining robust data pipelines and...",
+      "timestamp": "2025-05-29T23:49:50.256988",
+      "file_size": 40864,
       "model_provider": "aws"
     },
     {
-      "job_id": "4225142137",
-      "job_title": "Software Developer",
-      "company": "PhonePe",
-      "file_path": "./data/customized_resumes/resume_4225142137_PhonePe_Software Developer.pdf",
-      "timestamp": "2025-05-29T14:24:03.998051",
-      "filename": "resume_4225142137_PhonePe_Software Developer.pdf"
+      "job_id": "4240174915",
+      "job_title": "Data Engineer",
+      "company": "Particle41",
+      "file_path": "./data/customized_resumes/resume_4240174915_Particle41_Data Engineer.pdf",
+      "timestamp": "2025-05-29T23:54:15.400813",
+      "filename": "resume_4240174915_Particle41_Data Engineer.pdf"
+    },
+    {
+      "base_resume_path": "./data/base_resume.pdf",
+      "output_path": "./data/customized_resumes/resume_4236673615_GrowthJockey_Associate Software Engineer.pdf",
+      "filename": "resume_4236673615_GrowthJockey_Associate Software Engineer.pdf",
+      "job_title": "",
+      "company": "",
+      "customization_level": "moderate",
+      "job_description_preview": "Message from CTO (Hiring Manager):\"Hello! I'm Aresh Mishra, former Microsoft executive and current CTO at GrowthJockey. We are on a quest to build a top-tier tech team\u2014True Alpha\u2014to make a significant...",
+      "timestamp": "2025-05-29T23:55:47.238273",
+      "file_size": 40618,
+      "model_provider": "aws"
+    },
+    {
+      "job_id": "4236673615",
+      "job_title": "Associate Software Engineer",
+      "company": "GrowthJockey",
+      "file_path": "./data/customized_resumes/resume_4236673615_GrowthJockey_Associate Software Engineer.pdf",
+      "timestamp": "2025-05-30T00:00:18.675159",
+      "filename": "resume_4236673615_GrowthJockey_Associate Software Engineer.pdf"
+    },
+    {
+      "base_resume_path": "./data/base_resume.pdf",
+      "output_path": "./data/customized_resumes/resume_4237640200_Infosys_Data Engineer.pdf",
+      "filename": "resume_4237640200_Infosys_Data Engineer.pdf",
+      "job_title": "",
+      "company": "",
+      "customization_level": "moderate",
+      "job_description_preview": "Infosys is looking to hire a data engineer",
+      "timestamp": "2025-05-30T00:01:24.519992",
+      "file_size": 40635,
+      "model_provider": "aws"
+    },
+    {
+      "job_id": "4237640200",
+      "job_title": "Data Engineer",
+      "company": "Infosys",
+      "file_path": "./data/customized_resumes/resume_4237640200_Infosys_Data Engineer.pdf",
+      "timestamp": "2025-05-30T00:05:28.460904",
+      "filename": "resume_4237640200_Infosys_Data Engineer.pdf"
+    },
+    {
+      "base_resume_path": "./data/base_resume.pdf",
+      "output_path": "./data/customized_resumes/resume_4240189094_slice_SDE 1 Backend.pdf",
+      "filename": "resume_4240189094_slice_SDE 1 Backend.pdf",
+      "job_title": "",
+      "company": "",
+      "customization_level": "moderate",
+      "job_description_preview": "About us\nslice, India's leading consumer payments and credit platform, has now merged with North East Small Finance Bank (NESFB), marking a significant step into the banking sector. Trusted by over 18...",
+      "timestamp": "2025-05-30T00:07:14.936351",
+      "file_size": 40580,
+      "model_provider": "aws"
+    },
+    {
+      "job_id": "4240189094",
+      "job_title": "SDE 1 (Backend)",
+      "company": "slice",
+      "file_path": "./data/customized_resumes/resume_4240189094_slice_SDE 1 Backend.pdf",
+      "timestamp": "2025-05-30T00:11:39.416897",
+      "filename": "resume_4240189094_slice_SDE 1 Backend.pdf"
     }
   ]
 }
